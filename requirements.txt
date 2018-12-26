@@ -1,0 +1,9 @@
+flask
+numpy
+opencv-python
+cmake
+dlib
+face_recognition
+imutils
+pandas
+xlsxwriter

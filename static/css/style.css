@@ -1,0 +1,220 @@
+@charset "utf-8";
+/* Стили для всего документа */
+* {
+	margin: 0;			/* внешние отступы */
+	padding: 0;			/* отступы внутри обьекта */
+}
+
+html {
+	height: 100%;
+}
+
+/* Стили для блока body */
+body {
+	width: 100%;
+	height: 100%;
+	color: #333;
+	background: #f7f7f7;
+	font-size: 1em;
+	font-family: "Segoe UI", sans-serif;
+	line-height: 135%;
+}
+
+/* Стили для линий */
+hr {
+	display: block;
+	border: 0;
+	height: 1px;
+	border-top: 1px solid #ccc;
+	padding: 0;
+}
+
+/* Стили для ссылок */
+a {
+	color: #f58b8b;
+	text-decoration: none;
+	transition: all.6s ease;
+}
+
+a:hover {
+	color: #8b9ff5;
+	text-decoration: none;
+	transition: all.6s ease;
+}
+
+a:active {
+	color: #8ce4a6;
+}
+
+/* Стили для выделения текста */
+::selection {
+	background: #f58b8b;
+	color: #fff;
+}
+
+/* Стили для изображений */
+article #right_side img {
+	max-width: 100%;
+	height: 100;
+	width: auto;
+}
+
+/* Стили для осночной части и нижней */
+header, footer {
+	width: 98%;
+	background-color: #fff;
+	float: left;
+}
+
+header {
+	border-bottom: 2px solid silver;
+	padding: 1%;
+}
+
+#logo {
+	font-size: 1.3em;
+	font-family: Comic Sans MS, sans-serif;
+	color: silver;
+}
+
+#FaceDetection, #FaceRecognition, #register, #logout, #login {
+	font-size: 1.5em;
+	font-family: Comic Sans MS, sans-serif;
+	margin-left: 20px;
+}
+
+#menu {
+	color: #666;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 1.7em;
+}
+
+#menu hr {
+	width: 500px;
+	max-width: 100%;
+	margin-bottom: 10px;
+	margin-top: 5px;
+}
+
+#menuHrefs a {
+	padding: 5px 10px;
+	border-radius: 5px;
+	margin-right: 5px;
+	color: #626262;
+}
+
+#menuHrefs a:hover {
+	background-color: #ececec;
+}
+
+article {
+	margin-bottom: 10px;
+	margin-top: 5px;
+	width: 100%
+}
+
+article #left_side {
+	float: left;
+	margin-right: 1.25%;
+	margin-left: 10%;
+	width: 30%;
+}
+
+article #right_side {
+	float: left;
+	margin-right: 10%;
+	width: 47.5%;
+	margin-left: 1.25%;
+	margin-top: 2.5%;
+}
+
+article #right_side p {
+	font-size: 1.3em;
+	font-family: Comic Sans MS, sans-serif;
+	color: #666;
+	margin-bottom: 10px;
+}
+
+article #left_side p {
+	font-size: 1em;
+	font-family: sans-serif;
+	color: black;
+	margin-bottom: 10px;
+}
+
+article #left_side h2, h1 {
+	margin-bottom: 10px;
+}
+
+footer {
+	border-top: 2px solid silver;
+	margin-top: 10px;
+	padding: 1%;
+	padding-bottom: 2%;
+	font-size: 1em;
+	text-align: center;
+}
+
+/* Прижимаем footer к нижней части экрана */
+footer, #page-wrap:after {		/* delete */
+	height: 10px;				
+}
+
+#page-wrap:after {				/* delete */
+	content: "";
+	display: block;
+}
+
+#page-wrap {
+	min-height: 90%;			/* заполняем 90% экрана */
+	margin-bottom: -10px;
+}
+
+/* Стили для знака > */
+.more {
+	color: #333;
+}
+
+/* Стили для класса right */
+.right {
+	float: right;
+}
+
+/* Стили для класса clear - отступы */
+.clear {
+	clear: both;
+}
+
+/* Стили для класса word */
+.word {
+	color: purple;
+	font-family: Comic Sans MS, sans-serif;
+	font-size: 1.2em;
+	margin: 10px;
+}
+
+/* Стили для класса socimage */
+.socimage {
+	width: 25px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.fsSubmitButton
+{
+padding: 10px 15px 11px !important;
+font-size: 18px !important;
+background-color: #57d6c7;
+font-weight: bold;
+text-shadow: 1px 1px #57D6C7;
+color: #ffffff;
+border-radius: 5px;
+-moz-border-radius: 5px;
+-webkit-border-radius: 5px;
+border: 1px solid #57D6C7;
+cursor: pointer;
+box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
+}
+

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Face detection
+{% endblock %}
+
+{% block content_title %}
+    Upload file to detect face:
+{% endblock %}
+
+{% block content_left %}
+    <form id="upload-form" action="{{ url_for('face_detect') }}" method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*">
+        <input type="submit" value="Send" multiple>
+    </form>
+{% endblock %}
+
+{% block content_right %}
+    {% if is_post %}
+        <h3 align="center">Processed image</h3>
+        <div class="clear"><br/></div>
+        <img width="75%" src="{{ url_for('static', filename=path_upload_img) }}"><br>
+
+        <div class="clear"><br/></div>
+        <div class="clear"><br/></div>
+
+        <h3 align="center">Processed image</h3>
+        <div class="clear"><br/></div>
+        <img width="75%" src="{{ url_for('static', filename=path_detect_img) }}"><br>
+    {% endif %}
+{% endblock %}
