@@ -15,7 +15,8 @@ class FaceRecognitionFromCamera:
     _frame_number = 0
 
     def __init__(self):
-        dirs = os.listdir('images')
+        dirs = os.listdir(os.getcwd()+'/images')
+        print('dirs: ', dirs)
         dirs1 = []
 
         for sub_dir in dirs:
