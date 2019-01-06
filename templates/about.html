@@ -10,15 +10,18 @@
 
 {% block content_left %}
 
-<div>
-    <p><strong>Автор:</strong> Кривохижа Роман Андрійович</p>
-    <p><strong>Email:</strong> kriwohizha@gmail.com</p>
-    <p><strong>Група:</strong> ІС-72, II курс</p>
-    <p><strong>Університет: </strong>Національный технічний университет України</p>
-    <p>«Київский політехничний інститут імени Ігоря Сікорского»</p>
-    <p><strong>Номер заліковки:</strong> ІС-7217</p>
+    <div class="clear"><br/></div>
 
-    <p><img src="{{ url_for('static', filename='img/title.jpg') }}" width="200" height="300"></p>
-</div>
+    <div>
+        <p style="text-indent: 25px;"><strong>Автор:</strong> Кривохижа Роман Андрійович</p>
+        <p style="text-indent: 25px;"><strong>Email:</strong> kriwohizha@gmail.com</p>
+        <p style="text-indent: 25px;"><strong>GitHub:</strong> <a href="https://github.com/kryvokhyzha/Face-Recognition" target="_blank">kryvokhyzha</a></p>
+        <p style="text-indent: 25px;"><strong>Група:</strong> ІС-72, II курс</p>
+        <p style="text-indent: 25px;"><strong>Університет: </strong>Національный технічний университет України</p>
+        <p style="text-indent: 25px;">«Київский політехничний інститут імени Ігоря Сікорского»</p>
+        <p style="text-indent: 25px;"><strong>Номер заліковки:</strong> ІС-7217</p>
+
+        <p style="text-indent: 25px;"><img src="{{ url_for('static', filename='img/title.jpg') }}" width="200" height="300"></p>
+    </div>
 
 {% endblock %}

@@ -34,3 +34,11 @@
     <p><b>Для запуску сайту запустіть в кореневій папці проекту файл <i>START.bat</i></b></p>
 
 {% endblock %}
+
+{% block content_right %}
+    <p style="margin-left: 5%">Увага! Перед початком роботи програми ознайомтесь з:
+        <ul style="margin-left: 10%">
+            <li><a href="{{ url_for('site_info') }}">інструкцією по встановленню ПЗ</a></li><br>
+            <li><a href="{{ url_for('how_to_add_img') }}">інструкцією по додаванню зображень в базу</a></li><br>
+        </ul>
+{% endblock %}
