@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Face recognition
+{% endblock %}
+
+{% block style %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/slider.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/submit.js') }}"></script>
+{% endblock %}
+
+{% block content_title %}
+    Розпізнавання облич через веб-камеру:
+{% endblock %}
+
+{% block content_left %}
+    <div class="clear"><br/></div>
+
+    <form id="stream-form" action="{{ url_for('face_recognition_from_camera') }}" method="POST" onsubmit="submitCameraClick()">
+        <p>Значення точності співпадіння обличь: <output id="toleranceValue">50</output>%<br/>
+        <input id="toleranceSlider" name="toleranceSlider" type="range" min="1" max="100" step="1" value="50" oninput="toleranceSliderChange(this.value)" style="width: 50%"></p>
+
+        <input class="fsSubmitButton" type="submit" value="Розпочати розпізнавання" style="width: 50%">
+    </form>
+
+    <div class="clear"><br/></div>
+    <div class="clear"><br/></div>
+    <div class="clear"><br/></div>
+
+    {% if error %}
+        <span class="error">Помилка розпізнаваняя! Можливо, у вас немає інтегрованої веб-камери!</span>
+    {% endif %}
+
+    {% if show_label and not error %}
+        <span class="info">Розпізнавання завершено!</span>
+    {% endif %}
+
+{% endblock %}
+
+{% block content_right %}
+    {% if list_of_excel %}
+        <p>Останні додані excel-файли:</p>
+        <ul>
+        {% for file in list_of_excel %}
+            <li><a href="/output/from%20webcam/{{ file }}">{{ file }}</a></li><br>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

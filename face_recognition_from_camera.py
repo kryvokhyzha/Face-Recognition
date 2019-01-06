@@ -3,10 +3,12 @@ import cv2
 import os
 import pandas as pd
 
+from time import time
+
 
 class FaceRecognitionFromCamera:
     _images = []
-    _input_video = cv2.VideoCapture(0)
+    _input_video = None
     _face_locations = []
     _face_encodings = []
     _face_names = []
@@ -15,8 +17,8 @@ class FaceRecognitionFromCamera:
     _frame_number = 0
 
     def __init__(self):
-        dirs = os.listdir(os.getcwd()+'/images')
-        print('dirs: ', dirs)
+        dirs = os.listdir(os.getcwd() + '/images')
+        print('Group folder list:', dirs)
         dirs1 = []
 
         for sub_dir in dirs:
@@ -33,7 +35,21 @@ class FaceRecognitionFromCamera:
                 im1.append(sub_dir + '/' + i)
             self._images = list(set(list(self._images) + im1))
 
-    def start_recognition(self, tolerance=0.50):
+    def start_recognition(self, tolerance=0.5):
+        print('Tolerance value:', tolerance)
+
+        index = 0
+        for i in [-1, 0, 1, 2]:
+            capture = cv2.VideoCapture(i)
+            if capture.isOpened():
+                index = i
+                break
+        else:
+            return True
+
+        self._input_video = cv2.VideoCapture(index)
+        print('Video capture index:', index)
+
         know_faces = []
         for image in self._images:
             current_image = face_recognition.load_image_file(image)
@@ -67,17 +83,6 @@ class FaceRecognitionFromCamera:
                 except:
                     pass
 
-              #  for m in match:
-               #     if m:
-                #        name = str(self._images[count]).split('/')[2]
-                 #       group = str(self._images[count]).split('/')[1]
-                  #      date = pd.Timestamp.now()
-                        # print(name, group)
-                   #     break
-                   # count += 1
-
-                # print(match)
-
                 if (name and group and date) and not(name in self._face_names):
                     self._face_names.append(name)
                     self._face_group.append(group)
@@ -87,7 +92,9 @@ class FaceRecognitionFromCamera:
             for (top, right, bottom, left), name in zip(self._face_locations, self._face_names):
                 if not name:
                     continue
+                y = top - 15 if top - 15 > 15 else top + 15
                 cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
+                cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
 
             k = cv2.waitKey(1)
             if k == 27 or k == 13 or k == 32:
@@ -97,9 +104,11 @@ class FaceRecognitionFromCamera:
 
         # self._input_video.release()
         cv2.destroyAllWindows()
+        return False
 
     def write_to_excel(self, file_name='Student_list'):
         df = pd.DataFrame({'Student': self._face_names, 'Group': self._face_group, 'Time': self._face_date})
-        writer = pd.ExcelWriter('static\output\\' + file_name + '.xlsx', engine='xlsxwriter')
+        writer = pd.ExcelWriter('static\\output\\from webcam\\' +
+                                file_name + '_' + str(int(time() * 1000)) + '.xlsx', engine='xlsxwriter')
         df.to_excel(writer, sheet_name='Sheet1')
         writer.save()

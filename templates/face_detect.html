@@ -10,8 +10,8 @@
 
 {% block content_left %}
     <form id="upload-form" action="{{ url_for('face_detect') }}" method="POST" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*">
-        <input type="submit" value="Send" multiple>
+        <input class="custom-file-input" type="file" name="file" accept="image/*">
+        <input class="fsSubmitButton" type="submit" value="Send" multiple>
     </form>
 {% endblock %}
 

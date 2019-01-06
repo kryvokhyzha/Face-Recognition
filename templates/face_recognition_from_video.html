@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Face recognition
+{% endblock %}
+
+{% block style %}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/slider.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/upload.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/submit.js') }}"></script>
+{% endblock %}
+
+{% block content_title %}
+    Розпізнавання облич з відеофайла:
+{% endblock %}
+
+{% block content_left %}
+    <div class="clear"><br/></div>
+
+    <form id="upload-form" action="{{ url_for('face_recognition_from_video') }}" method="POST" enctype="multipart/form-data" onsubmit="submitVideoClick()">
+        <p>Значення точності співпадіння обличь: <strong><output id="toleranceValue">50</output>%</strong><br/>
+        <input id="toleranceSlider" name="toleranceSlider" type="range" min="1" max="100" step="1" value="50" oninput="toleranceSliderChange(this.value)" style="width: 50%"></p>
+
+        <div class="clear"><br/></div>
+
+        <p>Для пришвидшення роботи перевіряються не всі кадри, а лише їх частина.<br>Вкажіть кількість кадрів, які будуть пропущені перед перевіркою наступного: <strong><output id="skipFrameValue">5</output>шт.</strong><br/>
+        <input id="skipFrameSlider" name="skipFrameSlider" type="range" min="1" max="20" step="1" value="5" oninput="skipFrameSliderChange(this.value)" style="width: 50%"></p>
+
+        <div class="clear"><br/></div>
+
+        <input class="custom-file-input" type="file" name="file" accept="video/*" onchange="uploadChange(this.value)">
+        <output id="uploadValue"></output><br>
+
+        <div class="clear"><br/></div>
+
+        <input class="fsSubmitButton" type="submit" value="Розпочати розпізнавання" style="width: 50%" multiple>
+    </form>
+
+    <div class="clear"><br/></div>
+    <div class="clear"><br/></div>
+    <div class="clear"><br/></div>
+
+    {% if error %}
+        <span class="error">Помилка розпізнаваняя! Перевірте вказаний відеофайл!</span>
+    {% endif %}
+
+    {% if show_label and not error %}
+        <span class="info">Розпізнавання завершено!</span>
+    {% endif %}
+
+{% endblock %}
+
+{% block content_right %}
+    {% if list_of_excel %}
+        <p>Останні додані excel-файли:</p>
+        <ul>
+        {% for file in list_of_excel %}
+            <li><a href="/output/from%20video/{{ file }}">{{ file }}</a></li><br>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

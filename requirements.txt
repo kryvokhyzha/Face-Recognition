@@ -1,8 +1,8 @@
 flask
 numpy
-opencv-python
 cmake
 dlib
+opencv-python
 face_recognition
 imutils
 pandas
