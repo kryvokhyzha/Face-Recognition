@@ -7,16 +7,16 @@ from time import time
 
 
 class FaceRecognitionFromVideo:
-    _images = []
-    _input_video = None
-    _face_locations = []
-    _face_encodings = []
-    _face_names = []
-    _face_group = []
-    _face_date = []
-    _frame_number = 0
-
     def __init__(self):
+        self._images = []
+        self._input_video = None
+        self._face_locations = []
+        self._face_encodings = []
+        self._face_names = []
+        self._face_group = []
+        self._face_date = []
+        self._frame_number = 0
+
         dirs = os.listdir(os.getcwd()+'/images')
         print('Group folder list:', dirs)
         dirs1 = []

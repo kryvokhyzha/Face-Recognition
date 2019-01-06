@@ -3,5 +3,6 @@
 {% block content_left %}
     <h1>An unexpected error has occurred</h1>
     <p>The administrator has been notified. Sorry for the inconvenience!</p>
+    <p><b>Error text:</b> <i>{{ error }}</i></p>
     <p><a href="{{ url_for('index') }}">Back to home page</a></p>
 {% endblock %}

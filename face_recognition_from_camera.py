@@ -7,16 +7,16 @@ from time import time
 
 
 class FaceRecognitionFromCamera:
-    _images = []
-    _input_video = None
-    _face_locations = []
-    _face_encodings = []
-    _face_names = []
-    _face_group = []
-    _face_date = []
-    _frame_number = 0
-
     def __init__(self):
+        self._images = []
+        self._input_video = None
+        self._face_locations = []
+        self._face_encodings = []
+        self._face_names = []
+        self._face_group = []
+        self._face_date = []
+        self._frame_number = 0
+
         dirs = os.listdir(os.getcwd() + '/images')
         print('Group folder list:', dirs)
         dirs1 = []
@@ -35,8 +35,9 @@ class FaceRecognitionFromCamera:
                 im1.append(sub_dir + '/' + i)
             self._images = list(set(list(self._images) + im1))
 
-    def start_recognition(self, tolerance=0.5):
+    def start_recognition(self, tolerance=0.5, show_border=True):
         print('Tolerance value:', tolerance)
+        print('Show_border value:', show_border)
 
         index = 0
         for i in [-1, 0, 1, 2]:
@@ -94,7 +95,8 @@ class FaceRecognitionFromCamera:
                     continue
                 y = top - 15 if top - 15 > 15 else top + 15
                 cv2.rectangle(frame, (left, top), (right, bottom), (0, 255, 0), 2)
-                cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
+                if show_border:
+                    cv2.putText(frame, name, (left, y), cv2.FONT_HERSHEY_SIMPLEX, 0.75, (0, 255, 0), 2)
 
             k = cv2.waitKey(1)
             if k == 27 or k == 13 or k == 32:
@@ -102,7 +104,7 @@ class FaceRecognitionFromCamera:
 
             cv2.imshow('Video', frame)
 
-        # self._input_video.release()
+        self._input_video.release()
         cv2.destroyAllWindows()
         return False
 

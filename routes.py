@@ -1,6 +1,6 @@
 from app import app
 
-from flask import render_template, request, send_file, send_from_directory
+from flask import render_template, request, send_file, send_from_directory, url_for, redirect
 
 from errors import *
 from face_detection import FaceDetection
@@ -38,8 +38,8 @@ def download(slug1, slug2):
     try:
         target = 'static/output/' + slug1 + '/'
         return send_from_directory(directory=target, filename=slug2, as_attachment=True)
-    except Exception as e:
-        return str(e)
+    except Exception as error:
+        return redirect('404.html', error=error)
 
 
 @app.route('/about')
@@ -91,8 +91,19 @@ def face_recognition_from_camera():
     if request.method == 'POST':
         tolerance = 1.0 - (int(request.form['toleranceSlider']) / 100.)
 
+        show_border = False
+
+        try:
+            if request.form['scales']:
+                show_border = True
+            else:
+                show_border = False
+        except Exception as e:
+            print('Exception in face_recognition_from_camera:', e)
+            show_border = False
+
         face_rec = FaceRecognitionFromCamera()
-        error = face_rec.start_recognition(tolerance=tolerance)
+        error = face_rec.start_recognition(tolerance=tolerance, show_border=show_border)
         face_rec.write_to_excel()
 
         list_of_excel = os.listdir('static/output/from webcam/')[-5:]
