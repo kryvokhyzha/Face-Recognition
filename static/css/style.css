@@ -258,7 +258,7 @@ box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5) inset;
   visibility: hidden;
 }
 .custom-file-input::before {
-  content: 'Оберіть відеофайл';
+  content: 'Оберіть відео-файл';
   color: black;
   display: inline-block;
   background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);

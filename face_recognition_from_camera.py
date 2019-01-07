@@ -110,6 +110,7 @@ class FaceRecognitionFromCamera:
 
     def write_to_excel(self, file_name='Student_list'):
         df = pd.DataFrame({'Student': self._face_names, 'Group': self._face_group, 'Time': self._face_date})
+        df.index = df.index + 1
         writer = pd.ExcelWriter('static\\output\\from webcam\\' +
                                 file_name + '_' + str(int(time() * 1000)) + '.xlsx', engine='xlsxwriter')
         df.to_excel(writer, sheet_name='Sheet1')
